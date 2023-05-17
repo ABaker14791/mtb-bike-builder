@@ -16,7 +16,9 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body className={inter.className}>
-				<header className="p-4 text-4xl bg-slate-500">MTB Bike Builder</header>
+				<header className="flex justify-center p-4 text-4xl bg-teal-500">
+					MTB Bike Builder
+				</header>
 				{children}
 			</body>
 		</html>
