@@ -1,18 +1,46 @@
 "use client";
 import React from "react";
 
-const TopMenu = () => {
+const TopMenu = ({ handleMenu = () => {} }: any) => {
 	return (
 		<div>
 			<div className="flex w-screen justify-center bg-slate-600 mb-12">
-				<div className="p-2 cursor-pointer hover:text-black">Frame</div>
-				<div className="p-2 cursor-pointer hover:text-black">Suspension</div>
-				<div className="p-2 cursor-pointer hover:text-black">Wheels</div>
-				<div className="p-2 cursor-pointer hover:text-black">Drivetrain</div>
-				<div className="p-2 cursor-pointer hover:text-black">Brakes</div>
-				<div className="p-2 cursor-pointer bg-green-500 hover:text-black">
+				<button
+					className="p-2 cursor-pointer hover:text-black"
+					onClick={() => handleMenu("frameForm")}
+				>
+					Frame
+				</button>
+				<button
+					className="p-2 cursor-pointer hover:text-black"
+					onClick={() => handleMenu("suspension")}
+				>
+					Suspension
+				</button>
+				<button
+					className="p-2 cursor-pointer hover:text-black"
+					onClick={() => handleMenu("wheels")}
+				>
+					Wheels
+				</button>
+				<button
+					className="p-2 cursor-pointer hover:text-black"
+					onClick={() => handleMenu("driveTrain")}
+				>
+					Drivetrain
+				</button>
+				<button
+					className="p-2 cursor-pointer hover:text-black"
+					onClick={() => handleMenu("brakes")}
+				>
+					Brakes
+				</button>
+				<button
+					className="p-2 cursor-pointer bg-green-500 hover:text-black"
+					onClick={() => handleMenu("summary")}
+				>
 					Your Build: £1400
-				</div>
+				</button>
 			</div>
 		</div>
 	);
