@@ -1,0 +1,45 @@
+// schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["jsonProtocol"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url = env("POSTGRES_PRISMA_URL") // uses connection pooling
+  directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
+  shadowDatabaseUrl = env("POSTGRES_URL_NON_POOLING") // used for migrations
+}
+
+model User {
+  id            String       @default(cuid()) @id
+  name          String?
+  email         String?   @unique
+  createdAt     DateTime  @default(now()) @map(name: "created_at")
+  updatedAt     DateTime  @updatedAt @map(name: "updated_at")
+  frame         Frame[]
+  brakes        Brakes[]
+  @@map(name: "users")
+}
+
+model Frame {
+  id        String     @default(cuid()) @id
+  description     String
+  price   String?
+  links String?
+  author    User?   @relation(fields: [authorId], references: [id])
+  authorId  String?
+}
+
+model Brakes {
+  id        String     @default(cuid()) @id
+  frontBrake     String
+  frontPrice   String?
+  frontLinks String?
+  rearBrake     String
+  rearPrice    String?
+  rearLinks    String?
+  author    User?   @relation(fields: [authorId], references: [id])
+  authorId  String?
+}

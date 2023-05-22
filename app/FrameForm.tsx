@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 
-const FrameForm = () => {
+const FrameForm = ({ frames }: any) => {
 	const [description, setDescription] = useState("");
 	const [price, setPrice] = useState("");
 	const [links, setLinks] = useState("");
@@ -22,9 +22,9 @@ const FrameForm = () => {
 		e.preventDefault();
 		console.log(description);
 		setData({
-			description: description,
-			price: price,
-			links: links,
+			description: frames.description,
+			price: frames.price,
+			links: frames.links,
 		});
 		setSubmitted(true);
 	};
@@ -38,9 +38,9 @@ const FrameForm = () => {
 			)}
 			{submitted ? (
 				<div className="flex flex-col">
-					<div className="p-2">{data.description}</div>
-					<div className="p-2">{data.price}</div>
-					<div className="p-2">{data.links}</div>
+					<div>{description}</div>
+					<div>{price}</div>
+					<div>{links}</div>
 				</div>
 			) : (
 				<form onSubmit={handleSubmit}>

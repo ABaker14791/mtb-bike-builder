@@ -1,7 +1,14 @@
 "use client";
 import React from "react";
+import { useState } from "react";
 
-const TopMenu = ({ handleMenu = () => {} }: any) => {
+const TopMenu = () => {
+	const [menuSelected, setMenuSelected] = useState("summary");
+
+	const handleMenu = (menuItem: string) => {
+		setMenuSelected(menuItem);
+	};
+
 	return (
 		<div>
 			<div className="flex w-screen justify-center bg-slate-600 mb-12">

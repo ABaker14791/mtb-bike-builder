@@ -1,30 +1,33 @@
-"use client";
-
-import { useState } from "react";
+import prisma from "../lib/prisma";
 import FrameForm from "./FrameForm";
-import SuspensionForm from "./SuspensionForm";
-import WheelForm from "./WheelForm";
-import DriveTrainForm from "./DriveTrainForm";
-import BrakesForm from "./BrakesForm";
 import TopMenu from "./TopMenu";
 import Summary from "./Summary";
 
-export default function Home() {
-	const [menuSelected, setMenuSelected] = useState("summary");
-	const handleMenu = (menuItem: string) => {
-		setMenuSelected(menuItem);
-		console.log(menuSelected);
-	};
+async function getBike() {
+	const bike = await prisma.frame.findMany({
+		include: {
+			author: {
+				select: { name: true },
+			},
+		},
+	});
+	return bike;
+}
+
+export default async function Home() {
+	const data = await getBike();
+	// const [menuSelected, setMenuSelected] = useState("summary");
+
+	// const handleMenu = (menuItem: string) => {
+	// 	setMenuSelected(menuItem);
+	// };
 
 	return (
 		<main className="flex flex-col items-center">
-			<TopMenu handleMenu={handleMenu} />
-			{menuSelected === "frameForm" ? <FrameForm /> : null}
-			{menuSelected === "suspension" ? <SuspensionForm /> : null}
-			{menuSelected === "wheels" ? <WheelForm /> : null}
-			{menuSelected === "driveTrain" ? <DriveTrainForm /> : null}
-			{menuSelected === "brakes" ? <BrakesForm /> : null}
-			{menuSelected === "summary" ? <Summary /> : null}
+			<TopMenu />
+			<FrameForm frames={data} />
+			{/* {menuSelected === "brakes" ? <BrakesForm /> : null} */}
+			{/* <Summary /> */}
 		</main>
 	);
 }
