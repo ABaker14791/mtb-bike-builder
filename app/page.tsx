@@ -5,9 +5,9 @@ import Summary from "./Summary";
 
 async function getBike() {
 	const bike = await prisma.frame.findMany({
-		include: {
-			author: {
-				select: { name: true },
+		where: {
+			description: {
+				equals: "Nukeproof Mega 290",
 			},
 		},
 	});

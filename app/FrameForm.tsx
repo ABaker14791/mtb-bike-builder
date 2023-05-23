@@ -2,46 +2,30 @@
 import { useEffect, useState } from "react";
 
 const FrameForm = ({ frames }: any) => {
-	// const [description, setDescription] = useState("");
-	// const [price, setPrice] = useState("");
-	// const [links, setLinks] = useState("");
+	const [submitted, setSubmitted] = useState(false);
 	const bike = {
-		desc: frames.description,
-		price: frames.price,
-		links: frames.links,
+		description: frames[0].description,
+		price: frames[0].price,
+		links: frames[0].links,
 	};
-	// const [data, setData] = useState<Data>({
-	// 	description: "",
-	// 	price: "",
-	// 	links: "",
-	// });
-	const [submitted, setSubmitted] = useState(true);
 
-	// interface Data {
-	// 	description: string;
-	// 	price: string;
-	// 	links: string;
-	// }
+	interface Bike {
+		description: string;
+		price: string;
+		links: string;
+	}
 
-	// useEffect(() => {
-	// 	setData({
-	// 		description: frames.description,
-	// 		price: frames.price,
-	// 		links: frames.links,
-	// 	});
-	// 	setSubmitted(true); // check if data exists if true show results
-
-	// 	console.log(submitted);
-	// }, []);
+	useEffect(() => {
+		if (bike.description) {
+			setSubmitted(true);
+		} else {
+			setSubmitted(false);
+		}
+	}, []);
 
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		// console.log(frames);
-		// setData({
-		// 	description: frames.description,
-		// 	price: frames.price,
-		// 	links: frames.links,
-		// });
+		setSubmitted(true);
 	};
 
 	return (
@@ -53,7 +37,7 @@ const FrameForm = ({ frames }: any) => {
 			)}
 			{submitted ? (
 				<div className="flex flex-col">
-					<div>{bike.desc}</div>
+					<div>{bike.description}</div>
 					<div>{bike.price}</div>
 					<div>{bike.links}</div>
 				</div>
