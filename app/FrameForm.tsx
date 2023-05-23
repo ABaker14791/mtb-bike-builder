@@ -1,32 +1,47 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const FrameForm = ({ frames }: any) => {
-	const [description, setDescription] = useState("");
-	const [price, setPrice] = useState("");
-	const [links, setLinks] = useState("");
-	const [data, setData] = useState<Data>({
-		description: "",
-		price: "",
-		links: "",
-	});
-	const [submitted, setSubmitted] = useState(false);
+	// const [description, setDescription] = useState("");
+	// const [price, setPrice] = useState("");
+	// const [links, setLinks] = useState("");
+	const bike = {
+		desc: frames.description,
+		price: frames.price,
+		links: frames.links,
+	};
+	// const [data, setData] = useState<Data>({
+	// 	description: "",
+	// 	price: "",
+	// 	links: "",
+	// });
+	const [submitted, setSubmitted] = useState(true);
 
-	interface Data {
-		description: string;
-		price: string;
-		links: string;
-	}
+	// interface Data {
+	// 	description: string;
+	// 	price: string;
+	// 	links: string;
+	// }
+
+	// useEffect(() => {
+	// 	setData({
+	// 		description: frames.description,
+	// 		price: frames.price,
+	// 		links: frames.links,
+	// 	});
+	// 	setSubmitted(true); // check if data exists if true show results
+
+	// 	console.log(submitted);
+	// }, []);
 
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		console.log(description);
-		setData({
-			description: frames.description,
-			price: frames.price,
-			links: frames.links,
-		});
-		setSubmitted(true);
+		// console.log(frames);
+		// setData({
+		// 	description: frames.description,
+		// 	price: frames.price,
+		// 	links: frames.links,
+		// });
 	};
 
 	return (
@@ -38,9 +53,9 @@ const FrameForm = ({ frames }: any) => {
 			)}
 			{submitted ? (
 				<div className="flex flex-col">
-					<div>{description}</div>
-					<div>{price}</div>
-					<div>{links}</div>
+					<div>{bike.desc}</div>
+					<div>{bike.price}</div>
+					<div>{bike.links}</div>
 				</div>
 			) : (
 				<form onSubmit={handleSubmit}>
@@ -53,8 +68,8 @@ const FrameForm = ({ frames }: any) => {
 							type="text"
 							required
 							className="rounded p-2 text-white w-full bg-gray-800 border-2 border-teal-700"
-							value={description}
-							onChange={(e) => setDescription(e.target.value)}
+							// value={description}
+							// onChange={(e) => setDescription(e.target.value)}
 						/>
 					</div>
 					<div className="flex flex-col justify-between my-4">
@@ -65,8 +80,8 @@ const FrameForm = ({ frames }: any) => {
 							name="description"
 							type="text"
 							className="rounded p-2 text-white w-full bg-gray-800 border-2 border-teal-700"
-							value={price}
-							onChange={(e) => setPrice(e.target.value)}
+							// value={price}
+							// onChange={(e) => setPrice(e.target.value)}
 						/>
 					</div>
 					<div className="flex flex-col justify-between my-4">
@@ -77,8 +92,8 @@ const FrameForm = ({ frames }: any) => {
 							name="description"
 							type="text"
 							className="rounded p-2 text-white w-full bg-gray-800 border-2 border-teal-700"
-							value={links}
-							onChange={(e) => setLinks(e.target.value)}
+							// value={links}
+							// onChange={(e) => setLinks(e.target.value)}
 						/>
 					</div>
 					<div className="flex justify-between">
