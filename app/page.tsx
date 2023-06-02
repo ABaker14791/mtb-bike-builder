@@ -2,6 +2,12 @@ import prisma from "../lib/prisma";
 import FrameForm from "./FrameForm";
 import TopMenu from "./TopMenu";
 import Summary from "./Summary";
+import {
+	LoginButton,
+	LogoutButton,
+	ProfileButton,
+	RegisterButton,
+} from "@/components/buttons.component";
 
 async function getBike() {
 	const bike = await prisma.frame.findMany({
@@ -25,7 +31,13 @@ export default async function Home() {
 	return (
 		<main className="flex flex-col items-center">
 			<TopMenu />
-			<FrameForm frames={data} />
+			<div>
+				<LoginButton />
+				<RegisterButton />
+				<LogoutButton />
+				<ProfileButton />
+			</div>
+			{/* <FrameForm frames={data} /> */}
 			{/* {menuSelected === "brakes" ? <BrakesForm /> : null} */}
 			{/* <Summary /> */}
 		</main>
